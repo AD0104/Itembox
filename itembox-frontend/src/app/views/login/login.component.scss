@@ -1,0 +1,34 @@
+.max-page{
+  min-width: 100vw;
+  min-height: 100%;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mat-card-custom {
+  display: flex;
+  flex-direction: column;
+  min-width: 30vw;
+
+  .mat-card-header-custom {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .mat-icon {
+      width: auto;
+      height: auto;
+      font-size: 72px;
+    }
+
+  }
+
+  .mat-card-content-custom {
+    display: flex;
+    flex-direction: column;
+  }
+
+}
