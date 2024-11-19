@@ -38,10 +38,16 @@ public class EmpresaService implements IEmpresaService{
     
     @Override
     public GenericResponse saveEnterprise(EmpresaDto empresaDto) {
+        List<SucursalesDto> sucursalesList = empresaDto.getSucursales();
+        empresaDto.setSucursales(null);
         Empresas empresa = eMapper.toEntity(empresaDto);
 
         try {
             eRepository.save(empresa);
+            for (SucursalesDto sucursal : sucursalesList) {
+                sucursal.setEmpresa(eMapper.toDto(empresa));
+                this.sRepository.save(sMapper.toEntity(sucursal));
+            }
         } catch (Exception e) {
             logger.error("Error while saving enterprise entity: {}", e.getMessage());
             return new GenericResponse(e.getMessage(), 400);

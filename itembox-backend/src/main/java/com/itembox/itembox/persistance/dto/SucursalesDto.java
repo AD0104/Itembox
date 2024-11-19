@@ -17,4 +17,5 @@ public class SucursalesDto {
     private String idExterno;
     private String descripcion;
     private List<ArticulosDto> articulos;
+    private EmpresaDto empresa;
 }

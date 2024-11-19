@@ -16,11 +16,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 
 @Component
 @AllArgsConstructor
 @NoArgsConstructor
+@Slf4j
 public class AuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private CustomTokenProvider tokenProvider;
@@ -38,9 +41,11 @@ public class AuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal( HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
         throws ServletException, IOException {
+        logger.debug("[AuthenticationFilter.doFilterInternal] Ini Proc");
 
         String requestToken = getTokenFromRequest(request);
         if( StringUtils.hasText(requestToken) && tokenProvider.validateToken(requestToken)) {
+            logger.debug("Token is Valid, continuing the process");
             String userName = tokenProvider.getUsername(requestToken);
             UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <button mat-button (click)="goToUrl('/menu')">
+    <span>Itembox</span>
+  </button>
+  <button mat-button (click)="goToUrl('/menu')">
+    <span>Menu</span>
+  </button>
+  <span class="example-spacer"></span>
+  <div *ngIf="isUserLoggedIn">
+    <button mat-button (click)="doLogout()">
+      <span>Logout</span>
+    </button>
+  </div>
+</mat-toolbar>

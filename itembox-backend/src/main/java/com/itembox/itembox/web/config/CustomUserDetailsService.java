@@ -18,7 +18,6 @@ import com.itembox.itembox.persistance.dao.IUsuarioRepository;
 import com.itembox.itembox.persistance.entity.Usuario;
 
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @Service
 @AllArgsConstructor

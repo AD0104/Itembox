@@ -4,15 +4,17 @@
       <mat-icon>perm_identity</mat-icon>
     </mat-card-header>
     <mat-card-content class="mat-card-content-custom">
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Password</mat-label>
-        <input matInput>
-      </mat-form-field>
-      <button mat-stroked-button>Submit</button>
+      <form class="mat-card-content-custom" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" type="password" />
+        </mat-form-field>
+        <button mat-stroked-button>Submit</button>
+      </form>
     </mat-card-content>
   </mat-card>
 </div>

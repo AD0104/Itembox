@@ -2,7 +2,7 @@ CREATE DATABASE db_itembox;
 
 CREATE TABLE tbl_user_roles (
     usr_rols_id SERIAL PRIMARY KEY,
-    usr_rols_rol VARCHAR(50) NOT NULL,
+    usr_rols_rol VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE tbl_user_info (
@@ -39,3 +39,6 @@ CREATE TABLE tbl_item_info(
 );
 
 
+DROP TABLE tbl_user_info CASCADE;
+DROP TABLE tbl_user_roles CASCADE;
+DROP TABLE tbl_roles CASCADE;

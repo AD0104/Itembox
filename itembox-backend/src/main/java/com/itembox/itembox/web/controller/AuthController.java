@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,11 +17,12 @@ import com.itembox.itembox.business.services.IUsuarioService;
 import com.itembox.itembox.persistance.dto.AuthLoginDto;
 import com.itembox.itembox.persistance.dto.AuthLoginResponseDto;
 import com.itembox.itembox.persistance.dto.UsuarioDto;
+import com.itembox.itembox.persistance.dto.http.AuthGenericResponse;
 import com.itembox.itembox.persistance.dto.http.GenericResponse;
 
 @RestController
 @RequestMapping(value = "/api/auth")
-public class AuthController {
+public class AuthController extends GenericController{
 
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
@@ -32,22 +32,18 @@ public class AuthController {
     @Autowired IUsuarioService usuarioService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResponseEntity<AuthLoginResponseDto> postLogin(@RequestBody AuthLoginDto loginDto) {
+    public ResponseEntity<AuthGenericResponse> postLogin(@RequestBody AuthLoginDto loginDto) {
         logger.info("[AuthController.postLogin] Ini Call, Process Date: {}", LocalDate.now());
 
         String authToken = authService.login(loginDto);
 
-        AuthLoginResponseDto jwtAuthResponse = new AuthLoginResponseDto();
-        jwtAuthResponse.setAccessToken(authToken);
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.set("Access-Control-Allow-Credentials", "true");
-        httpHeaders.set("Access-Control-Allow-Origin", "http://localhost:4200/");
+        AuthGenericResponse response = new AuthGenericResponse();
+        response.setMessage("Ok");
+        response.setCode(200);
+        response.setData(new AuthLoginResponseDto(authToken, "Bearer "));
 
         logger.info("[AuthController.postLogin] Fin Call, Process Date: {}", LocalDate.now());
-        return ResponseEntity.ok()
-            .headers(httpHeaders)
-            .body(jwtAuthResponse);
+        return ResponseEntity.ok() .body(response);
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -63,7 +59,6 @@ public class AuthController {
             return new ResponseEntity<GenericResponse>(new GenericResponse("Usuario no disponible", 400), HttpStatus.OK);
 
         GenericResponse response = this.usuarioService.registerUser(usuarioDto);
-
 
         logger.info("[AuthController.postRegister] Ini Call, Process Date: {}", LocalDate.now());
         return new ResponseEntity<GenericResponse>(response, HttpStatus.OK);
