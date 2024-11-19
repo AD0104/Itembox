@@ -33,6 +33,12 @@ e2e/*.map
 ### Java ###
 # Compiled class file
 *.class
+*/.classpath
+*/.factorypath
+*/.project
+*/.settings
+*/exit
+*/target
 
 # Log file
 *.log
