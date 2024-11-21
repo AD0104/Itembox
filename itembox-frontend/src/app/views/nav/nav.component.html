@@ -1,14 +1,44 @@
-<mat-toolbar>
-  <button mat-button (click)="goToUrl('/menu')">
-    <span>Itembox</span>
-  </button>
-  <button mat-button (click)="goToUrl('/menu')">
-    <span>Menu</span>
-  </button>
-  <span class="example-spacer"></span>
-  <div *ngIf="isUserLoggedIn">
-    <button mat-button (click)="doLogout()">
+<mat-toolbar class="navbar">
+  <div class="navbar-image__container">
+    <img [src]="logoPath" alt="Itembox Logo" class="navbar-image__image" />
+  </div>
+  <div class="navbar-content">
+    <!-- If User Logged In Show This -->
+    <button
+      *ngIf="isUserLoggedIn"
+      mat-button
+      (click)="goToUrl('/menu')"
+      class="navbar-button"
+    >
+      <span>Menu</span>
+    </button>
+    <span class="example-spacer"></span>
+    <button
+      *ngIf="isUserLoggedIn"
+      mat-button
+      (click)="doLogout()"
+      class="navbar-button"
+    >
       <span>Logout</span>
     </button>
+    <!-- If User Logged In Show This -->
+    <!-- If User Isn't Logged In Show This -->
+    <button
+      *ngIf="!isUserLoggedIn"
+      mat-button
+      class="navbar-button"
+      (click)="goToUrl('/login')"
+    >
+      <span>Login</span>
+    </button>
+    <button
+      *ngIf="!isUserLoggedIn"
+      mat-button
+      class="navbar-button"
+      (click)="goToUrl('/signup')"
+    >
+      <span>Signup</span>
+    </button>
+    <!-- If User Isn't Logged In Show This -->
   </div>
 </mat-toolbar>

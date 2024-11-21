@@ -1,3 +1,36 @@
-.example-spacer {
-  flex: 1 1 auto;
+.navbar {
+  background-color: #EAF6F6;
+
+  .navbar-content {
+    min-width: 90%;
+    display: flex;
+
+    .example-spacer {
+      flex: 1 1 auto !important;
+    }
+
+    .navbar-button {
+      background-color: none;
+      border-radius: 0px;
+      border-bottom: 1px solid black;
+      margin-inline: 1rem;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .navbar-image__container {
+    max-width: 10%;
+    width: auto;
+    height: 100%;
+
+    .navbar-image__image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
 }

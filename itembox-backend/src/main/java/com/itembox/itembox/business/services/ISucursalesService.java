@@ -5,4 +5,5 @@ import com.itembox.itembox.persistance.dto.SucursalesDto;
 
 public interface ISucursalesService {
     List<SucursalesDto> getListSucursales();
+    SucursalesDto getSucursal(String idSucursalExterno);
 }

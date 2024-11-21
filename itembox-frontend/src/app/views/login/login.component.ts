@@ -47,7 +47,5 @@ export class LoginComponent implements OnDestroy {
     this.authManager.doLogin(loginData);
   }
 
-  ngOnDestroy(): void {
-    console.log("Destroying Login Module...");
-  }
+  ngOnDestroy(): void {}
 }

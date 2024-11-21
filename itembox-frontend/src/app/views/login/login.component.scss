@@ -1,12 +1,14 @@
-.max-page{
-  min-width: 100vw;
-  min-height: 100%;
+.max-page {
+  min-width: 100%;
+  min-height: 80%;
 }
+
 .flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .mat-card-custom {
   display: flex;
   flex-direction: column;

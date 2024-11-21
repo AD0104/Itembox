@@ -23,7 +23,6 @@ export class AuthManagementService {
   ) {}
 
   doLogin(loginCredentials: LoginInterface) {
-    console.log("Doing Login");
     this.httpService
       .postGenerateJwtToken(loginCredentials)
       .subscribe((response: LoginResponseInterface) => {
@@ -31,9 +30,7 @@ export class AuthManagementService {
           const dialogRef = this.dialog.open(LoginErrorComponent, {
             width: "750px",
           });
-          dialogRef.afterClosed().subscribe(() => {
-            console.log("Closing login error dialog");
-          });
+          dialogRef.afterClosed().subscribe(() => {});
           return;
         }
         localStorage.setItem(TOKEN_NAME, response.data.accessToken);
@@ -49,7 +46,7 @@ export class AuthManagementService {
   }
 
   getUserLoggedIn(): boolean {
-    console.log("Getting User Logged In Status");
+    this.isUserLoggedIn.next(!!localStorage.getItem(TOKEN_NAME));
     return !!localStorage.getItem(TOKEN_NAME);
   }
 }

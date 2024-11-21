@@ -3,7 +3,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { Router } from "@angular/router";
-import { TOKEN_NAME } from "../../shared/constants";
 import { CommonModule } from "@angular/common";
 import { AuthManagementService } from "../../_services/auth/auth.management.service";
 
@@ -16,6 +15,7 @@ import { AuthManagementService } from "../../_services/auth/auth.management.serv
 })
 export class NavComponent implements OnInit {
   isUserLoggedIn: boolean = false;
+  logoPath: string = "assets/images/itembox_logo.png";
   constructor(
     private router: Router,
     private authManager: AuthManagementService,
@@ -28,8 +28,8 @@ export class NavComponent implements OnInit {
   }
   ngOnInit(): void {
     this.isUserLoggedIn = this.authManager.getUserLoggedIn();
-    console.log("Initial User Logged In Status: " + this.isUserLoggedIn);
     this.authManager.isUserLoggedInStatus.subscribe((result) => {
+      console.log("isUserLoggedIn changed the current value: ", result);
       this.isUserLoggedIn = result;
     });
   }

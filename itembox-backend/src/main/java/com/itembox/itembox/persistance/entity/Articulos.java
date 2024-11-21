@@ -2,6 +2,8 @@ package com.itembox.itembox.persistance.entity;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -44,5 +46,6 @@ public class Articulos {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "suc_id", nullable = false)
+    @JsonIgnore
     private Sucursales sucursal;
 }
